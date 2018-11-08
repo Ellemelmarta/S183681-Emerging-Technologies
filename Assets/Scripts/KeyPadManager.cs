@@ -5,17 +5,34 @@ using TMPro;
 
 public class KeyPadManager : MonoBehaviour {
 
+    //Public due to use in TMPro
+    public List<int> buttonNumberList;
+    
+    //TODO: may be better to hardcode these in the future
+    public List<int> buttonNumberListAnswer;
     public float timeUntilCodeReset;
-
     public TextMeshPro numberCodeText;
 
-    public List<int> buttonNumberList;
     private int buttonNumberListMax = 5;
 
-    private float timeSinceButtonPress = 0;
+    private float timeSinceButtonPress = 0.0f;
 
     private bool loopsRunning;
     private bool buttonPressed;
+
+
+    /// <summary>
+    /// 
+    /// TODO: 
+    /// 
+    /// 1)  Allow the list of ints to compare to the "keypad answer" which will also be a list of ints and this will just
+    ///     be the correct answer to the keypad, either can do this by adding another button for the comparison or making it on
+    ///     a gesture from the leap motion.
+    ///     
+    /// 2)  Make the colour of a block changed to show if you got it right or not, doesnt matter what block for now as its just
+    ///     for a visual representation of the answers bool wrong or right.
+    /// 
+    /// </summary>
 
 
     private void Start()
@@ -23,8 +40,7 @@ public class KeyPadManager : MonoBehaviour {
         buttonPressed = false;
     }
 
-
-    private void FixedUpdate()
+    private void Update()
     {
         if (buttonPressed != true)
         {
@@ -45,7 +61,7 @@ public class KeyPadManager : MonoBehaviour {
     }
 
     //Reusable function for all buttons in keypad
-    public void ButtonPressed(int buttonNumber)
+    public void NumberButtonPressed(int buttonNumber)
     {
         //making sure not to edit the list while items being removed.
         if (loopsRunning == false && buttonNumberList.Count < buttonNumberListMax)
@@ -61,9 +77,41 @@ public class KeyPadManager : MonoBehaviour {
 
     public void ButtonStopPressed()
     {
-        if (buttonPressed == true)
+        if (buttonNumberList.Count == buttonNumberListAnswer.Count)
         {
-            buttonPressed = false;
+            CodeNumberComparison();
+        }
+
+        buttonPressed = false;
+    }
+
+
+    //only runs when the list is full and the user releases the button
+    //on release of 5th number or any further releases
+    private bool CodeNumberComparison()
+    {
+        int correctAnswerCount = 0;
+
+        //compares the count of correct comparisons from the 2 lists (in order as well)
+        for (int currentNum = 0; currentNum < buttonNumberList.Count; currentNum++)
+        {
+            if (buttonNumberList[currentNum] == buttonNumberListAnswer[currentNum])
+            {
+                correctAnswerCount ++;
+            }
+        }
+        
+        if (correctAnswerCount == buttonNumberListAnswer.Count)
+        {
+            print(true);
+            return true;
+        }
+
+        else
+        {
+            print(false);
+            return false;
         }
     }
+
 }
