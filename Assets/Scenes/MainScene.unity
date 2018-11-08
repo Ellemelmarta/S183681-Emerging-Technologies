@@ -455,7 +455,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4050235663507654, guid: dae2e2be31c98324eac460f702db97e9, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0.498
+      value: -2.109
       objectReference: {fileID: 0}
     - target: {fileID: 4050235663507654, guid: dae2e2be31c98324eac460f702db97e9, type: 2}
       propertyPath: m_LocalRotation.x
@@ -1119,10 +1119,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33b910215d13c6d46913b8181fd49aa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeUntilCodeReset: 3
-  numberCodeText: {fileID: 1418831979}
   buttonNumberList: 
   buttonNumberListAnswer: 0100000002000000030000000400000005000000
+  timeUntilCodeReset: 3
+  numberCodeText: {fileID: 1418831979}
 --- !u!4 &1601069766
 Transform:
   m_ObjectHideFlags: 0
