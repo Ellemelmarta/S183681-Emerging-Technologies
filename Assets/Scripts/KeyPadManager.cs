@@ -21,20 +21,6 @@ public class KeyPadManager : MonoBehaviour {
     private bool buttonPressed;
 
 
-    /// <summary>
-    /// 
-    /// TODO: 
-    /// 
-    /// 1)  Allow the list of ints to compare to the "keypad answer" which will also be a list of ints and this will just
-    ///     be the correct answer to the keypad, either can do this by adding another button for the comparison or making it on
-    ///     a gesture from the leap motion.
-    ///     
-    /// 2)  Make the colour of a block changed to show if you got it right or not, doesnt matter what block for now as its just
-    ///     for a visual representation of the answers bool wrong or right.
-    /// 
-    /// </summary>
-
-
     private void Start()
     {
         buttonPressed = false;
@@ -55,7 +41,7 @@ public class KeyPadManager : MonoBehaviour {
 
             buttonNumberList.RemoveRange(0, buttonNumberList.Count);
             numberCodeText.text = "";
-          
+            numberCodeText.color = Color.white;
             loopsRunning = false;
         }
     }
@@ -103,13 +89,13 @@ public class KeyPadManager : MonoBehaviour {
         
         if (correctAnswerCount == buttonNumberListAnswer.Count)
         {
-            print(true);
+            numberCodeText.color = Color.green;
             return true;
         }
 
         else
         {
-            print(false);
+            numberCodeText.color = Color.red;
             return false;
         }
     }
