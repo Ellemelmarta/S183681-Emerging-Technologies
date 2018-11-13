@@ -9,12 +9,16 @@ public class VrMovement : MonoBehaviour {
     public float speed = 2.0f;
 
     private bool isActive;
-
+	
     private void FixedUpdate()
     {
         if (isActive == true)
         {
+			//if (nothing is overlapping collider) {}
             transform.position = transform.position + Camera.main.transform.forward * speed * Time.deltaTime;
+		
+			//else , dont move cos youre hitting into a wall etc
+			
             //cc.SimpleMove(forward * speed);
         }
     }

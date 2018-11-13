@@ -238,7 +238,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 92231582}
-  m_LocalRotation: {x: -0, y: -0, z: -7.1054274e-15, w: 1}
+  m_LocalRotation: {x: 0.08074639, y: 0.47012722, z: 0.87881106, w: -0.012316065}
   m_LocalPosition: {x: -0.14344445, y: -0.18817377, z: -2.3315368}
   m_LocalScale: {x: 0.049565244, y: 0.052526314, z: 0.055905882}
   m_Children: []
@@ -264,12 +264,12 @@ MonoBehaviour:
   _motionlessRangeFraction: 0.4
   _maxMotionlessRange: 0.120000005
   _maxAttachmentAngle: 60
-  _alwaysAttachDistance: 0
+  _alwaysAttachDistance: 1
   lockToAnchor: 1
   lockWhenAttached: 1
   matchAnchorMotionWhileAttaching: 1
   anchorLerpCoeffPerSec: 20
-  anchorRotation: 0
+  anchorRotation: 1
   interactionBehaviour: {fileID: 92231583}
   _interactionBehaviourIsNull: 0
   detachWhenGrasped: 1
@@ -284,6 +284,46 @@ MonoBehaviour:
     m_RotationOrder: 4
   _eventTable:
     _entries: []
+--- !u!1 &164499272
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 164499274}
+  - component: {fileID: 164499273}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &164499273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 164499272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b8297b0fb1ed1f4cbbad8a0c21d76f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &164499274
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 164499272}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.000033218414, y: 0.0003658794, z: -2.2682436}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &170076733
 GameObject:
   m_ObjectHideFlags: 0
@@ -770,15 +810,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4936172074165354, guid: dae2e2be31c98324eac460f702db97e9, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4952658041076362, guid: dae2e2be31c98324eac460f702db97e9, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4496001613479874, guid: dae2e2be31c98324eac460f702db97e9, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114841810450959484, guid: dae2e2be31c98324eac460f702db97e9,
         type: 2}
@@ -877,6 +917,11 @@ Prefab:
     - target: {fileID: 4838135226881042, guid: 88ee591db753ffc4fb48c96e8c1a130b, type: 2}
       propertyPath: m_LocalScale.y
       value: 0.21339567
+      objectReference: {fileID: 0}
+    - target: {fileID: 54880079591803166, guid: 88ee591db753ffc4fb48c96e8c1a130b,
+        type: 2}
+      propertyPath: m_Constraints
+      value: 118
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 88ee591db753ffc4fb48c96e8c1a130b, type: 2}
@@ -1526,6 +1571,7 @@ GameObject:
   - component: {fileID: 1171404234}
   - component: {fileID: 1171404237}
   - component: {fileID: 1171404236}
+  - component: {fileID: 1171404235}
   m_Layer: 0
   m_Name: KeypadBackground
   m_TagString: Untagged
@@ -1554,6 +1600,18 @@ Transform:
   m_Father: {fileID: 1601069766}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -87.915, y: 0, z: 0}
+--- !u!65 &1171404235
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1171404233}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.9999998, z: 0.99999976}
+  m_Center: {x: -0.000000029802322, y: -0.0000001937151, z: 0}
 --- !u!23 &1171404236
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1966,9 +2024,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allowMultipleObjects: 0
-  matchActiveStateWithAttachedObjects: 0
+  matchActiveStateWithAttachedObjects: 1
   _eventTable:
-    _entries: []
+    _entries:
+    - enumValue: 130
+      callback:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 0}
+            m_MethodName: 
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: 
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+        m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
 --- !u!1 &1613703302
 GameObject:
   m_ObjectHideFlags: 0
@@ -2211,6 +2286,7 @@ GameObject:
   - component: {fileID: 1843741096}
   - component: {fileID: 1843741095}
   - component: {fileID: 1843741094}
+  - component: {fileID: 1843741098}
   m_Layer: 0
   m_Name: TempFloor
   m_TagString: Untagged
@@ -2287,6 +2363,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1843741098
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1843741093}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10, y: 2.220446e-16, z: 10}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1870780163
 GameObject:
   m_ObjectHideFlags: 0
@@ -2297,11 +2385,11 @@ GameObject:
   - component: {fileID: 1870780167}
   - component: {fileID: 1870780166}
   - component: {fileID: 1870780165}
-  - component: {fileID: 1870780164}
   - component: {fileID: 1870780170}
   - component: {fileID: 1870780169}
   - component: {fileID: 1870780168}
   - component: {fileID: 1870780171}
+  - component: {fileID: 1870780164}
   m_Layer: 0
   m_Name: GestureBlockTest
   m_TagString: Untagged
@@ -2370,7 +2458,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1870780163}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.317, y: -0.274, z: -0.836}
+  m_LocalPosition: {x: -0.904, y: -0.232, z: -0.836}
   m_LocalScale: {x: 0.4249514, y: 0.28597, z: 0.28597}
   m_Children: []
   m_Father: {fileID: 0}
