@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,13 +10,10 @@ public class LeapMotionUI : MonoBehaviour {
 
     private bool attachedToPinky = true;
 
-    public GameObject PinkyAnchor;
+    public GameObject uiPad;
 
     public GameObject interactionCube;
 
-    //TODO: after demo try and clean this code up so its in better places because
-    //as of now the code is all over the place for different objects.
-    //still need a way to move the anchor of the pinky more to the right of the hand so its not directly on the finger
 
     //all fingers extended for UIManager
     public void OnAllFingers()
@@ -57,8 +55,20 @@ public class LeapMotionUI : MonoBehaviour {
     public void OnDetachedFromHand()
     {
         attachedToPinky = false;
+        DisplayUIPlus();
     }
 
+    private void DisplayUIPlus()
+    {
+        uiPad.transform.position = Camera.main.transform.position + new Vector3(0, 0, 0.5f);
+        uiPad.SetActive(true);
+    }
+
+
+    public void UIButtonPress()
+    {
+        print("great");
+    }
 
     //if attached, fingers extended and palm is up
     private void DisplayUI()
@@ -77,5 +87,4 @@ public class LeapMotionUI : MonoBehaviour {
             interactionCube.SetActive(false);
         }
     }
-
 }
