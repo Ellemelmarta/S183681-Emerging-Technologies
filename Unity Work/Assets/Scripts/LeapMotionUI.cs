@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Leap.Unity.Attributes;
+using Leap.Unity.Interaction;
 
 public class LeapMotionUI : MonoBehaviour {
 
@@ -9,10 +11,17 @@ public class LeapMotionUI : MonoBehaviour {
     private bool fingersExtendedUI;
 
     private bool attachedToPinky = true;
+    private AnchorableBehaviour anchorableBehaviour;
 
     public GameObject uiPad;
-
+    
     public GameObject interactionCube;
+    public GameObject uiHandAnchor;
+
+    private void Start()
+    {
+        anchorableBehaviour = interactionCube.GetComponent<AnchorableBehaviour>();
+    }
 
 
     //all fingers extended for UIManager
@@ -50,6 +59,7 @@ public class LeapMotionUI : MonoBehaviour {
     public void OnAttachedToHand()
     {
         attachedToPinky = true;
+        DisplayUIPlus();
     }
 
     public void OnDetachedFromHand()
@@ -58,16 +68,28 @@ public class LeapMotionUI : MonoBehaviour {
         DisplayUIPlus();
     }
 
+
+    //clean up this name??
     private void DisplayUIPlus()
     {
         uiPad.transform.position = Camera.main.transform.position + new Vector3(0, 0, 0.5f);
-        uiPad.SetActive(true);
+        if (attachedToPinky == true)
+        {
+            uiPad.SetActive(false);
+        }
+        else
+        {
+            uiPad.SetActive(true);
+        }
     }
 
-
+    // doesnt work
     public void UIButtonPress()
     {
-        print("great");
+        uiPad.SetActive(false);
+        interactionCube.SetActive(false);
+        anchorableBehaviour.isAttached = true;
+        attachedToPinky = true;
     }
 
     //if attached, fingers extended and palm is up
