@@ -1,14 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
-public class GesturePuzzle : MonoBehaviour
+public class GestureBlock : MonoBehaviour
 {
-    //All currently only for left hand
-
-    private bool thumbIsUp;
-    private bool thumbDirectionUp;
+    //All only for left hand
+    private bool fingerExtensionIsCorrect;
+    private bool fingerDirectionCorrect;
     private bool isInRange;
+
+    public TextMeshPro answerText;
+    private static int gestureBlocksCorrect;
 
     private Material cubeColour;
 
@@ -20,7 +23,7 @@ public class GesturePuzzle : MonoBehaviour
     //is the thumb up not direction based
     public void OnThumbIsUpOrDown()
     {
-        thumbIsUp = !thumbIsUp;
+        fingerExtensionIsCorrect = !fingerExtensionIsCorrect;
 
         //set from proximity script
         if (isInRange)
@@ -32,7 +35,7 @@ public class GesturePuzzle : MonoBehaviour
     //direction based thumb has to be pointing roughly 90 degrees on the y
     public void OnThumbDirectionUpOrDown()
     {
-        thumbDirectionUp = !thumbDirectionUp;
+        fingerDirectionCorrect = !fingerDirectionCorrect;
 
 
         if (isInRange)
@@ -50,11 +53,18 @@ public class GesturePuzzle : MonoBehaviour
     //checks for our specific gesture currently a thumbs up
     private void ThumbsUpCheck()
     {
-        if (thumbIsUp && thumbDirectionUp)
+        if (fingerExtensionIsCorrect && fingerDirectionCorrect)
         {
-            //TODO: just for use as indication it worked at the moment please change
             cubeColour.color = Color.green;
+            gestureBlocksCorrect += 1;
+
+            if (gestureBlocksCorrect == 3)
+            {
+                answerText.alpha = 255;
+            }
         }
+
+        
     }
 
 }

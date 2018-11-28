@@ -32,6 +32,11 @@ public class VrMovement : MonoBehaviour {
 
                 transform.position = transform.position + new Vector3(cameraForwardX, 0, cameraForwardZ) * speed * Time.deltaTime;
             }
+            else
+            {
+                //allows foot collision not to get the player stuck (is not the greatest method for vr but works)
+                gameObject.transform.position = new Vector3(transform.position.x - 0.1f, transform.position.y, transform.position.z - 0.1f);
+            }
 	
         }
     }
