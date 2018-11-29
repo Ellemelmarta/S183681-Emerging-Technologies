@@ -31,7 +31,7 @@ public class LeapMotionUI : MonoBehaviour {
 
         if (palmIsUpUI && fingersExtendedUI)
         {
-            DisplayUI();
+            DisplayInteractionCube();
         }
         else
         {
@@ -46,7 +46,7 @@ public class LeapMotionUI : MonoBehaviour {
 
         if (palmIsUpUI && fingersExtendedUI)
         {
-            DisplayUI();
+            DisplayInteractionCube();
         }
         else
         {
@@ -59,20 +59,19 @@ public class LeapMotionUI : MonoBehaviour {
     public void OnAttachedToHand()
     {
         attachedToPinky = true;
-        DisplayUIPlus();
+        DisplayUI();
     }
 
     public void OnDetachedFromHand()
     {
         attachedToPinky = false;
-        DisplayUIPlus();
+        DisplayUI();
     }
 
 
-    //clean up this name??
-    private void DisplayUIPlus()
+    private void DisplayUI()
     {
-        uiPad.transform.position = Camera.main.transform.position + new Vector3(0, 0, 0.5f);
+        //uipad follows the front of the camera as using camera position doesnt work.
         if (attachedToPinky == true)
         {
             uiPad.SetActive(false);
@@ -82,8 +81,8 @@ public class LeapMotionUI : MonoBehaviour {
             uiPad.SetActive(true);
         }
     }
-
-    // doesnt work
+    
+    //removes the uipad and returns the interaction cube to the users hand for another use
     public void UIButtonPress()
     {
         uiPad.SetActive(false);
@@ -93,7 +92,7 @@ public class LeapMotionUI : MonoBehaviour {
     }
 
     //if attached, fingers extended and palm is up
-    private void DisplayUI()
+    private void DisplayInteractionCube()
     {
         if (attachedToPinky)
         {
