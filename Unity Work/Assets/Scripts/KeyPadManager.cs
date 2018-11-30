@@ -20,6 +20,8 @@ public class KeyPadManager : MonoBehaviour {
     private bool loopsRunning;
     private bool buttonPressed;
 
+    public GameObject finalDoor;
+
 
     private void Start()
     {
@@ -90,6 +92,7 @@ public class KeyPadManager : MonoBehaviour {
         if (correctAnswerCount == buttonNumberListAnswer.Count)
         {
             numberCodeText.color = Color.green;
+            finalDoor.GetComponent<Animator>().Play("glass_door_open", 0);
             return true;
         }
 
