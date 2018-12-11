@@ -9,6 +9,7 @@ public class VrMovement : MonoBehaviour {
     public float speed = 2.0f;
 
     private bool isActive;
+    private bool isColliding;
 
     private HeadCollisionChecker headCollisionChecker;
 
@@ -22,22 +23,26 @@ public class VrMovement : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        if (isActive == true)
+        if (headCollisionChecker.isCollidingHead == true)
         {
-            if (headCollisionChecker.isCollidingHead != true)
+            print("it does work");
+            //allows foot collision not to get the player stuck (is not the greatest method for vr but works)
+            isColliding = true;
+
+            //now i need a way to move the player away from the wall but im not really sure how tf to do this to be honest so maybe this code will all be irellivant soon enough
+
+        }
+        else if (headCollisionChecker.isCollidingHead == false)
+        {
+            print("this works too");
+            isColliding = false;
+            if (isActive == true && isColliding == false)
             {
                 //only moves on the cameras x and z forward not y
                 float cameraForwardZ = Camera.main.transform.forward.z;
                 float cameraForwardX = Camera.main.transform.forward.x;
-
                 transform.position = transform.position + new Vector3(cameraForwardX, 0, cameraForwardZ) * speed * Time.deltaTime;
             }
-            else
-            {
-                //allows foot collision not to get the player stuck (is not the greatest method for vr but works)
-                gameObject.transform.position = new Vector3(transform.position.x - 0.1f, transform.position.y, transform.position.z - 0.1f);
-            }
-	
         }
     }
 

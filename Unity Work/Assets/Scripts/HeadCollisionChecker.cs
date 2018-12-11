@@ -19,5 +19,4 @@ public class HeadCollisionChecker : MonoBehaviour {
     {
         isCollidingHead = false;
     }
-
 }
