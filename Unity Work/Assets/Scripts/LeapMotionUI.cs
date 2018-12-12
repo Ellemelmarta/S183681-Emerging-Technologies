@@ -20,11 +20,12 @@ public class LeapMotionUI : MonoBehaviour {
 
     private void Start()
     {
+        //Allows for attatchment to the anchor
         anchorableBehaviour = interactionCube.GetComponent<AnchorableBehaviour>();
     }
 
 
-    //all fingers extended for UIManager
+    //All fingers extended
     public void OnAllFingers()
     {
         fingersExtendedUI = !fingersExtendedUI;
@@ -39,11 +40,13 @@ public class LeapMotionUI : MonoBehaviour {
         }
     }
 
-    //palm up for UIManager
+    //Palm facing up
     public void PalmDirectionChange()
     {
+        //Starts as false
         palmIsUpUI = !palmIsUpUI;
 
+        //Conditions for displaying the UI
         if (palmIsUpUI && fingersExtendedUI)
         {
             DisplayInteractionCube();
@@ -71,7 +74,7 @@ public class LeapMotionUI : MonoBehaviour {
 
     private void DisplayUI()
     {
-        //uipad follows the front of the camera as using camera position doesnt work.
+        //Uipad is attached to the camera as using camera position doesn't work
         if (attachedToPinky == true)
         {
             uiPad.SetActive(false);
@@ -82,7 +85,7 @@ public class LeapMotionUI : MonoBehaviour {
         }
     }
     
-    //removes the uipad and returns the interaction cube to the users hand for another use
+    //Sets UIpad inactive and returns InteractionCube to the anchor
     public void UIButtonPress()
     {
         uiPad.SetActive(false);
@@ -91,7 +94,7 @@ public class LeapMotionUI : MonoBehaviour {
         attachedToPinky = true;
     }
 
-    //if attached, fingers extended and palm is up
+    //If InteractionCube attached, fingers extended and palm is up
     private void DisplayInteractionCube()
     {
         if (attachedToPinky)
@@ -100,7 +103,7 @@ public class LeapMotionUI : MonoBehaviour {
         }
     }
 
-    //any other hand state
+    //Any other hand state change triggers this
     private void HideUI()
     {
         if (attachedToPinky)

@@ -5,11 +5,12 @@ using TMPro;
 
 public class KeyPadManager : MonoBehaviour {
 
-    //Public due to use in TMPro
+    //Public due to use in TMPro text
     public List<int> buttonNumberList;
     
-    //TODO: may be better to hardcode these in the future
+    //4,3,0,1,4
     public List<int> buttonNumberListAnswer;
+
     public float timeUntilCodeReset;
     public TextMeshPro numberCodeText;
 
@@ -18,24 +19,25 @@ public class KeyPadManager : MonoBehaviour {
     private float timeSinceButtonPress = 0.0f;
 
     private bool loopsRunning;
-    private bool buttonPressed;
+    private bool buttonNumberPressed;
 
     public GameObject finalDoor;
 
 
     private void Start()
     {
-        buttonPressed = false;
+        buttonNumberPressed = false;
     }
+
 
     private void Update()
     {
-        if (buttonPressed != true)
+        //Makes sure the code being entered doesnt reset if player still inputing numbers
+        if (buttonNumberPressed != true)
         {
             timeSinceButtonPress += Time.deltaTime;
         }
 
-        //if the user is to mess up this will allow the list to be reset after short amount of time
         if (timeUntilCodeReset < timeSinceButtonPress)
         {
             loopsRunning = true;
@@ -48,17 +50,17 @@ public class KeyPadManager : MonoBehaviour {
         }
     }
 
-    //Reusable function for all buttons in keypad
+    //For all buttons in keypad
     public void NumberButtonPressed(int buttonNumber)
     {
-        //making sure not to edit the list while items being removed.
+        //Making sure not to edit the list while items being removed.
         if (loopsRunning == false && buttonNumberList.Count < buttonNumberListMax)
         {
             buttonNumberList.Add(buttonNumber);
             numberCodeText.text = numberCodeText.text + buttonNumber;
         }
 
-        buttonPressed = true;
+        buttonNumberPressed = true;
         timeSinceButtonPress = 0;
     }
 
@@ -70,17 +72,16 @@ public class KeyPadManager : MonoBehaviour {
             CodeNumberComparison();
         }
 
-        buttonPressed = false;
+        buttonNumberPressed = false;
     }
 
 
-    //only runs when the list is full and the user releases the button
-    //on release of 5th number or any further releases
+    //Only runs when the list is full and the user releases the button
     private bool CodeNumberComparison()
     {
         int correctAnswerCount = 0;
 
-        //compares the count of correct comparisons from the 2 lists (in order as well)
+        //Compares the count of correct comparisons from the 2 lists (in order as well)
         for (int currentNum = 0; currentNum < buttonNumberList.Count; currentNum++)
         {
             if (buttonNumberList[currentNum] == buttonNumberListAnswer[currentNum])

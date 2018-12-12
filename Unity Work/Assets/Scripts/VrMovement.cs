@@ -4,56 +4,48 @@ using UnityEngine;
 
 public class VrMovement : MonoBehaviour {
 
-   //all currently only for use with right hand
+    public float speed;
 
-    public float speed = 2.0f;
-
-    private bool isActive;
+    private bool isMovementActive;
     private bool isColliding;
 
     private HeadCollisionChecker headCollisionChecker;
 
-    private Camera vrCamera;
-
     private void Start()
     {
-        vrCamera = Camera.main;
-        headCollisionChecker = vrCamera.GetComponent<HeadCollisionChecker>();
+        headCollisionChecker = Camera.main.GetComponent<HeadCollisionChecker>();
     }
 
     private void FixedUpdate()
     {
+        //Player has to walk back if they collide with a wall
         if (headCollisionChecker.isCollidingHead == true)
         {
-            print("it does work");
-            //allows foot collision not to get the player stuck (is not the greatest method for vr but works)
             isColliding = true;
-
-            //now i need a way to move the player away from the wall but im not really sure how tf to do this to be honest so maybe this code will all be irellivant soon enough
-
         }
         else if (headCollisionChecker.isCollidingHead == false)
         {
-            print("this works too");
             isColliding = false;
-            if (isActive == true && isColliding == false)
+            if (isMovementActive == true && isColliding == false)
             {
-                //only moves on the cameras x and z forward not y
+                //Camera will only move on x and z
                 float cameraForwardZ = Camera.main.transform.forward.z;
                 float cameraForwardX = Camera.main.transform.forward.x;
+
+                //Cannot move the virtual reality camera only the parent gameObject of it (moving the LeapRig)
                 transform.position = transform.position + new Vector3(cameraForwardX, 0, cameraForwardZ) * speed * Time.deltaTime;
             }
         }
     }
 
-    //only activates when index and thumb extended
+    //Activation on bottom 3 fingers on right hand being extended
     public void ExtendedFingerMovementVR()
     {
-        isActive = true;
+        isMovementActive = true;
     }
 
     public void ExtendedFingerMovementEnd()
     {
-        isActive = false;
+        isMovementActive = false;
     }
 }

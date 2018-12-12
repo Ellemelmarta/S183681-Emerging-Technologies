@@ -13,14 +13,9 @@ public class GestureBlock : MonoBehaviour
     public TextMeshPro answerText;
     private static int gestureBlocksCorrect;
 
-    private Material cubeColour;
+    public TextMeshPro screenText;
 
-    private void Start()
-    {
-        cubeColour =  gameObject.GetComponent<MeshRenderer>().material;
-    }
-
-    //is the thumb up not direction based
+    //Is the thumb up not direction based
     public void OnThumbIsUpOrDown()
     {
         fingerExtensionIsCorrect = !fingerExtensionIsCorrect;
@@ -32,7 +27,7 @@ public class GestureBlock : MonoBehaviour
         }
     }
 
-    //direction based thumb has to be pointing roughly 90 degrees on the y
+    //Direction based thumb has to be pointing roughly 90 degrees on the y
     public void OnThumbDirectionUpOrDown()
     {
         fingerDirectionCorrect = !fingerDirectionCorrect;
@@ -50,12 +45,12 @@ public class GestureBlock : MonoBehaviour
         isInRange = !isInRange;
     }
 
-    //checks for our specific gesture currently a thumbs up
+    //Checks for our specific gesture currently a thumbs up
     private void ThumbsUpCheck()
     {
         if (fingerExtensionIsCorrect && fingerDirectionCorrect)
         {
-            cubeColour.color = Color.green;
+            screenText.color = Color.green;
             gestureBlocksCorrect += 1;
 
             if (gestureBlocksCorrect == 3)

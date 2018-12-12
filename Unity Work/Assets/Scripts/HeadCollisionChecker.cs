@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class HeadCollisionChecker : MonoBehaviour {
 
-    //the head collider is attached to the camera so it goes where the headset goes
-
-    //TODO: the feet colliders may not work properly in vr need to test
+    //The head collider is attached to the camera so it goes where the headset goes
 
     public bool isCollidingHead;
 
